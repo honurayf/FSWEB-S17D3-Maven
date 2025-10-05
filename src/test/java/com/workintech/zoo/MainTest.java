@@ -51,15 +51,15 @@ class MainTest {
 
     @Test
     @DisplayName("Test Kangaroo Creation and Field Access")
-     void testKangarooCreationAndFieldAccess() {
+    void testKangarooCreationAndFieldAccess() {
 
         Kangaroo kangaroo = new Kangaroo(1, "Kenny", 2.0, 85.0, "Male", false);
 
 
         assertEquals(1, kangaroo.getId());
         assertEquals("Kenny", kangaroo.getName());
-        assertEquals(2.0, kangaroo.getHeight());
-        assertEquals(85.0, kangaroo.getWeight());
+        assertEquals(85.0, kangaroo.getHeight());
+        assertEquals(2.0, kangaroo.getWeight());
         assertEquals("Male", kangaroo.getGender());
         assertEquals(false, kangaroo.getIsAggressive());
     }
@@ -94,8 +94,8 @@ class MainTest {
         // Assertions to ensure fields are set correctly
         assertEquals(1, koala.getId());
         assertEquals("Kara", koala.getName());
-        assertEquals(20.0, koala.getSleepHour());
-        assertEquals(15.0, koala.getWeight());
+        assertEquals(20.0, koala.getWeight());
+        assertEquals(15.0, koala.getSleepHour());
         assertEquals("Female", koala.getGender());
     }
 
@@ -135,7 +135,7 @@ class MainTest {
 
     @Test
     @DisplayName("Test ZooErrorResponse AllArgsConstructor")
-     void testAllArgsConstructor() {
+    void testAllArgsConstructor() {
 
         long now = System.currentTimeMillis();
 
@@ -351,13 +351,13 @@ class MainTest {
     @Test
     @DisplayName("ZooGlobalExceptionHandler:HandleGenericException")
     void testHandleGenericException() throws Exception {
-    Kangaroo invalidKangaroo = new Kangaroo();
-    mockMvc.perform(post("/kangaroos")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(invalidKangaroo)))
-            .andExpect(status().isBadRequest())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("$.message").isNotEmpty())
-            .andExpect(jsonPath("$.status").value(HttpStatus.BAD_REQUEST.value()));
+        Kangaroo invalidKangaroo = new Kangaroo();
+        mockMvc.perform(post("/kangaroos")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(invalidKangaroo)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.message").isNotEmpty())
+                .andExpect(jsonPath("$.status").value(HttpStatus.BAD_REQUEST.value()));
     }
 }
